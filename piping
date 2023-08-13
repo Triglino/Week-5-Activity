@@ -65,3 +65,20 @@ mysample3<-select(mysample2, incidents_00_14, incidents_85_99)
 mysample4<-summary(mysample3)
 print(mysample4)
 
+#Adding the piping that I now realised I was missing
+mysample4 <- mysample %>%
+# Arrange by airline
+arrange(airline) %>%
+# Filter rows where incidents_85_99 > 10
+filter(incidents_85_99 > 10) %>%
+# Rename column avail_seat_km_per_week to seats
+rename(seats = avail_seat_km_per_week) %>%
+# Select specific columns
+select(incidents_00_14, incidents_85_99) %>%
+# Summarize data
+summary()
+
+# Print the summary
+print(mysample4)
+
+
